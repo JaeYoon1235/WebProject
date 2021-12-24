@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./jquery-3.6.0.min.js"></script> 
+    <title>Webproject202132013현재윤</title>
+    <style>
+        h1{
+            text-align:center;
+        }
+        
+        
+    </style>
+    <script>
+        function spanClickHander2(){
+            let parent = this.parentNode.getAttribute("id");
+            console.log("test");
+            if(parent == "ToDo"){
+                document.getElementById("Done").appendChild(this);
+            }
+            else{
+                document.getElementById("ToDo").appendChild(this);
+            }
+        }
+        function del(){
+            this.parentNode.remove();
+        }
+        function keydownHandler(){
+            if(event.keyCode == 13){
+                let div = document.getElementById("ToDo");
+                let span = document.createElement("span");
+                let button = document.createElement("button");
+                button.innerHTML = "X";
+                span.innerHTML = this.value;
+                this.value ="";
+                div.appendChild(span);
+                span.appendChild(button);
+                $(button).click(del);
+                $(span).click(spanClickHander2);
+                
+                }
+        }
+        $(document).ready(function(){
+           $("#input").keydown(keydownHandler);
+           console.log(document.querySelector("h1"))
+           
+        })
+    </script>
+</head>
+<style>
+    
+</style>
+<body>
+    <h1>ToDo List Project</h1>
+    <input type="text" id="input">
+    <hr>
+    <h2>ToDo</h2>
+    <div id="ToDo">
+
+    </div>
+    <hr>
+    <h2>Done</h2>
+    <div id="Done">
+
+    </div>
+</body>
+</html>
